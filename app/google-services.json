@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "661484878637",
+    "project_id": "puravits-lab",
+    "storage_bucket": "puravits-lab.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661484878637:android:c52b0187a8820fc455f1a4",
+        "android_client_info": {
+          "package_name": "com.example.puravitslab"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnUlM25RSqyD_90Bbz4RfXSPzOYGcdwHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661484878637:android:6d1b4527238a71b555f1a4",
+        "android_client_info": {
+          "package_name": "com.puravitslab"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnUlM25RSqyD_90Bbz4RfXSPzOYGcdwHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

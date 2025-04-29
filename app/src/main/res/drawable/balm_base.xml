@@ -1,0 +1,11 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="50dp"
+    android:viewportWidth="120"
+    android:viewportHeight="50">
+
+    <!-- Base del bálsamo -->
+    <path
+        android:fillColor="#DDDDDD"
+        android:pathData="M40,0 h40 v20 a10,10 0 0 1 -10,10 h-20 a10,10 0 0 1 -10,-10 z" />
+</vector>

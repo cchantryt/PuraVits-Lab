@@ -1,0 +1,17 @@
+<resources>
+    <string-array name="colors">
+        <item>Rosa</item>
+        <item>Rojo</item>
+        <item>Transparente</item>
+        <item>Coral</item>
+        <item>Durazno</item>
+    </string-array>
+
+    <string-array name="aromas">
+        <item>Fresa</item>
+        <item>Vainilla</item>
+        <item>Mentolado</item>
+        <item>Coco</item>
+        <item>Natural</item>
+    </string-array>
+</resources>

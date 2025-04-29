@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_customize"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Personalizar" />
+
+    <item
+        android:id="@+id/nav_benefits"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Beneficios" />
+
+    <item
+        android:id="@+id/nav_products"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Productos" />
+
+    <item
+        android:id="@+id/nav_community"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Comunidad" />
+
+</menu>

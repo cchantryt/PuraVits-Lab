@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Nombre del bálsamo -->
+
+        <!-- Contenedor del bálsamo con margen superior -->
+        <EditText
+            android:id="@+id/editBalmName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:hint="Ingresa el nombre de tu bálsamo"
+            android:padding="16dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.9" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/editBalmName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="32dp">
+
+        </FrameLayout>
+
+        <!-- Botones de color con margen superior aumentado -->
+
+        <!-- Nombre del bálsamo con más espacio -->
+        <LinearLayout
+            android:id="@+id/colorButtonsLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingVertical="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editBalmName">
+
+            <Button
+                android:id="@+id/buttonRed"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="12dp"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:text="" />
+
+            <Button
+                android:id="@+id/buttonGreen"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="12dp"
+                android:backgroundTint="@android:color/holo_green_dark"
+                android:text="" />
+
+            <Button
+                android:id="@+id/buttonBlue"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="12dp"
+                android:backgroundTint="@android:color/holo_blue_dark"
+                android:text="" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/nombrebalsamo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre del bálsamo"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@id/colorButtonsLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- Botón Guardar con más margen superior -->
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#00BCD4"
+            android:text="Guardar"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/balm_base"
+            app:layout_constraintWidth_percent="0.6" />
+
+        <ImageView
+            android:id="@+id/balm_body"
+            android:layout_width="120dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="32dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/balm_body"
+            app:layout_constraintTop_toBottomOf="@+id/nombrebalsamo"
+            tools:layout_editor_absoluteX="131dp" />
+
+        <ImageView
+            android:id="@+id/balm_base"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/balm_base"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/balm_body" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

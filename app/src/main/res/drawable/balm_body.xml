@@ -1,0 +1,17 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="200dp"
+    android:viewportWidth="120"
+    android:viewportHeight="200">
+
+    <!-- Cuerpo y tapa del bálsamo -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M40,20 h40 a10,10 0 0 1 10,10 v110 a10,10 0 0 1 -10,10 h-40 a10,10 0 0 1 -10,-10 v-110 a10,10 0 0 1 10,-10 z" />
+
+    <!-- Línea de división para tapa -->
+    <path
+        android:strokeColor="#BBBBBB"
+        android:strokeWidth="2"
+        android:pathData="M40,60 h40" />
+</vector>

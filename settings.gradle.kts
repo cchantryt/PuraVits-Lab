@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "PuraVitsLab"
+rootProject.name = "PuraVits Lab"
 include(":app")
  

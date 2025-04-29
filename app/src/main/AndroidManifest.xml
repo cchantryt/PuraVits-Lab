@@ -12,11 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PuraVitsLab"
         tools:targetApi="31">
+
+        <activity
+            android:name=".views.RegistroActivity">
+        </activity>
+        <activity
+            android:name=".views.LoginActivity">
+        </activity>
+        <activity
+            android:name=".views.PersonalizaciónActivity">
+        </activity>
+
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.PuraVitsLab">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
