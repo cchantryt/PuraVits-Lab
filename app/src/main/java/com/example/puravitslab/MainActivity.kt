@@ -36,6 +36,8 @@ class MainActivity : Navigation() {
 
         // Cargar productos desde Firebase
         cargarProductos(adapter)
+        //Barra navegacion inferior
+        setupBottomNavigation(binding.bottomNavigationView)
     }
 
     private fun cargarProductos(adapter: ProductoAdapter) {
@@ -67,7 +69,7 @@ class MainActivity : Navigation() {
 * Personalizacion del balsamo - EN PROCESO
 * Pantalla de visualizacion de beneficios - EN PROCESO.
 * Sistema de pedidos (pagos contra entrega)
-* Seccion feedback y comunidad
+* Seccion feedback y comunidad - EN PROCESO
 * Notificaciones push
 * Historial de pedidos (desde perfilactivity)
 *
