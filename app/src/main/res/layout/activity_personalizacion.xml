@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".views.PersonalizaciónActivity">
+    tools:context=".views.PersonalizacionActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -112,7 +112,6 @@
             android:id="@+id/buttonSave"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:layout_marginTop="16dp"
             android:backgroundTint="#00BCD4"
             android:text="Guardar"
             android:textColor="@android:color/white"
@@ -121,7 +120,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/balm_base"
+            app:layout_constraintTop_toBottomOf="@+id/balm_body"
             app:layout_constraintWidth_percent="0.6" />
 
         <ImageView
@@ -131,19 +130,20 @@
             android:layout_marginTop="32dp"
             android:adjustViewBounds="true"
             android:src="@drawable/balm_body"
-            app:layout_constraintTop_toBottomOf="@+id/nombrebalsamo"
-            tools:layout_editor_absoluteX="131dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nombrebalsamo" />
 
         <ImageView
             android:id="@+id/balm_base"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
+            android:layout_width="182dp"
+            android:layout_height="79dp"
             android:layout_gravity="bottom"
-            android:layout_marginTop="32dp"
+            android:rotation="180"
             android:src="@drawable/balm_base"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/balm_body" />
+            app:layout_constraintTop_toTopOf="@+id/balm_body" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

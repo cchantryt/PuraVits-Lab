@@ -8,7 +8,7 @@ import com.example.puravitslab.R
 import com.example.puravitslab.views.BeneficiosActivity
 import com.example.puravitslab.views.ComunidadActivity
 import com.example.puravitslab.views.ProductosActivity
-import com.example.puravitslab.views.PersonalizaciónActivity
+import com.example.puravitslab.views.PersonalizacionActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 open class Navigation : AppCompatActivity() {
@@ -17,8 +17,8 @@ open class Navigation : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener { item: MenuItem ->
             when (item.itemId) {
                 R.id.nav_customize -> {
-                    if (this::class.java != PersonalizaciónActivity::class.java) {
-                        startActivity(Intent(this, PersonalizaciónActivity::class.java))
+                    if (this::class.java != PersonalizacionActivity::class.java) {
+                        startActivity(Intent(this, PersonalizacionActivity::class.java))
                         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                     }
                     true
