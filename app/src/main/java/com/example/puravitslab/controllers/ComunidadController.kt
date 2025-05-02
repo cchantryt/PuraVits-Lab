@@ -24,4 +24,8 @@ class ComunidadController {
         // En un caso real, aquí se enviaría a Firebase
         callback(true) // Simula éxito
     }
+    fun agregarComentarioFirebase(comentario: Comentario, callback: (Boolean) -> Unit) {
+        // Implementación para Firebase (opcional)
+        callback(true)
+    }
 }
