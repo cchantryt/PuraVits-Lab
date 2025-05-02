@@ -23,16 +23,9 @@ open class Navigation : AppCompatActivity() {
                     }
                     true
                 }
-                R.id.nav_benefits -> {
-                    if (this::class.java != BeneficiosActivity::class.java) {
-                        startActivity(Intent(this, BeneficiosActivity::class.java))
-                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-                    }
-                    true
-                }
-                R.id.nav_products -> {
+                R.id.carrito -> {
                     if (this::class.java != ProductosActivity::class.java) {
-                        startActivity(Intent(this, ProductosActivity::class.java))
+                        //startActivity(Intent(this, ProductosActivity::class.java))
                         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                     }
                     true
