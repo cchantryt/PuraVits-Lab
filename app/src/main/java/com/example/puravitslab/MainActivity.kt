@@ -38,8 +38,8 @@ class MainActivity : Navigation() {
 /* Funcionalidades
 * Registro e inicio de sesión - LISTO
 * Simulador de color (Filtro IG)
-* Personalizacion del balsamo
-* Pantalla de visualizacion de beneficios
+* Personalizacion del balsamo - EN PROCESO
+* Pantalla de visualizacion de beneficios - EN PROCESO
 * Sistema de pedidos (pagos contra entrega)
 * Seccion feedback y comunidad
 * Notificaciones push

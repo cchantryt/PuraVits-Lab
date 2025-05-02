@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.puravitslab.MainActivity
 import com.example.puravitslab.controllers.RegistroController
 import com.example.puravitslab.databinding.ActivityRegistroBinding
 
@@ -36,6 +37,17 @@ class RegistroActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        binding.buttonInicioSesion.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+
+        binding.backbutton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }

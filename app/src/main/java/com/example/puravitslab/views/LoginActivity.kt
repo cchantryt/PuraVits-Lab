@@ -35,5 +35,16 @@ class LoginActivity : AppCompatActivity(){
                 Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.buttoRegisro.setOnClickListener {
+            startActivity(Intent(this, RegistroActivity::class.java))
+            finish()
+        }
+
+        binding.backbutton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

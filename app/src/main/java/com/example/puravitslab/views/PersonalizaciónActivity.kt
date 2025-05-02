@@ -1,5 +1,6 @@
 package com.example.puravitslab.views
 
+import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.widget.Toast
@@ -7,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
+import com.example.puravitslab.MainActivity
 import com.example.puravitslab.R
 import com.example.puravitslab.databinding.ActivityPersonalizacionBinding
 
@@ -39,6 +41,12 @@ class PersonalizaciónActivity : AppCompatActivity() {
             // Lógica para guardar el nombre y color seleccionado
             saveCustomization()
         }
+
+        binding.backbutton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun changeBaseColor(colorResId: Int) {
@@ -49,4 +57,5 @@ class PersonalizaciónActivity : AppCompatActivity() {
     private fun saveCustomization() {
         // Lógica para guardar la personalización, como el nombre y color del bálsamo
     }
+
 }
