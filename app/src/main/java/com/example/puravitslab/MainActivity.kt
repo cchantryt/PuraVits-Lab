@@ -1,5 +1,6 @@
 package com.example.puravitslab
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -8,6 +9,7 @@ import com.example.puravitslab.adapters.ProductoAdapter
 import com.example.puravitslab.databinding.ActivityMainBinding
 import com.example.puravitslab.models.Producto
 import com.example.puravitslab.utils.Navigation
+import com.example.puravitslab.views.PerfilActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -36,6 +38,14 @@ class MainActivity : Navigation() {
 
         // Cargar productos desde Firebase
         cargarProductos(adapter)
+        //Barra navegacion inferior
+        setupBottomNavigation(binding.bottomNavigationView)
+
+        binding.profileButton.setOnClickListener {
+            val intent = Intent(this, PerfilActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun cargarProductos(adapter: ProductoAdapter) {
@@ -67,7 +77,7 @@ class MainActivity : Navigation() {
 * Personalizacion del balsamo - EN PROCESO
 * Pantalla de visualizacion de beneficios - EN PROCESO.
 * Sistema de pedidos (pagos contra entrega)
-* Seccion feedback y comunidad
+* Seccion feedback y comunidad - EN PROCESO
 * Notificaciones push
 * Historial de pedidos (desde perfilactivity)
 *

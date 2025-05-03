@@ -12,23 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PuraVitsLab"
         tools:targetApi="31">
-
         <activity
-            android:name=".views.RegistroActivity">
-        </activity>
-        <activity
-            android:name=".views.LoginActivity">
-        </activity>
-        <activity
-            android:name=".views.PersonalizaciónActivity">
-        </activity>
-        <activity
-            android:name=".views.BeneficiosActivity">
-        </activity>
-        <activity
-            android:name=".views.PerfilActivity">
-        </activity>
-
+            android:name=".views.ComunidadActivity"
+            android:exported="false" />
+        <activity android:name=".views.RegistroActivity"></activity>
+        <activity android:name=".views.LoginActivity"></activity>
+        <activity android:name=".views.PersonalizacionActivity"></activity>
+        <activity android:name=".views.BeneficiosActivity"></activity>
+        <activity android:name=".views.PerfilActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
