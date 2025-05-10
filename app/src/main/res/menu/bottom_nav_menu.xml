@@ -7,13 +7,13 @@
         android:title="Personalizar" />
 
     <item
-        android:id="@+id/carrito"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="Productos" />
-
-    <item
         android:id="@+id/nav_community"
         android:icon="@drawable/ic_launcher_foreground"
         android:title="Comunidad" />
+
+    <item
+        android:id="@+id/carrito"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Carrito" />
 
 </menu>

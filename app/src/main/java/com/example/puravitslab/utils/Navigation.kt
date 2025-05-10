@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.puravitslab.R
 import com.example.puravitslab.views.BeneficiosActivity
+import com.example.puravitslab.views.CarritoActivity
 import com.example.puravitslab.views.ComunidadActivity
 import com.example.puravitslab.views.ProductosActivity
 import com.example.puravitslab.views.PersonalizacionActivity
@@ -23,16 +24,16 @@ open class Navigation : AppCompatActivity() {
                     }
                     true
                 }
-                R.id.carrito -> {
-                    if (this::class.java != ProductosActivity::class.java) {
-                        //startActivity(Intent(this, ProductosActivity::class.java))
+                R.id.nav_community -> {
+                    if (this::class.java != ComunidadActivity::class.java) {
+                        startActivity(Intent(this, ComunidadActivity::class.java))
                         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                     }
                     true
                 }
-                R.id.nav_community -> {
-                    if (this::class.java != ComunidadActivity::class.java) {
-                        startActivity(Intent(this, ComunidadActivity::class.java))
+                R.id.carrito -> {
+                    if (this::class.java != CarritoActivity::class.java) {
+                        startActivity(Intent(this, CarritoActivity::class.java))
                         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                     }
                     true
