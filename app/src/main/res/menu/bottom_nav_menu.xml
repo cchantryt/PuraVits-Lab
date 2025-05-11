@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/nav_customize"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/settinglines"
         android:title="Personalizar" />
 
     <item
         android:id="@+id/nav_community"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/people"
         android:title="Comunidad" />
 
     <item
         android:id="@+id/carrito"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/cart"
         android:title="Carrito" />
 
 </menu>
