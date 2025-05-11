@@ -1,5 +1,6 @@
 package com.example.puravitslab.views
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -46,8 +47,10 @@ class CarritoActivity : AppCompatActivity() {
         }
 
         // Configurar botón de finalizar compra
-        binding.checkoutButton.setOnClickListener {
-            Toast.makeText(this, "Compra finalizada (lógica pendiente)", Toast.LENGTH_SHORT).show()
+        binding.finalizarBoton.setOnClickListener {
+            val intent = Intent(this, PasarelaPagoActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
@@ -56,12 +59,40 @@ class CarritoActivity : AppCompatActivity() {
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     cartItems.clear()
-                    for (itemSnapshot in snapshot.children) {
-                        val item = itemSnapshot.getValue(CarritoItem::class.java)
-                        item?.let { cartItems.add(it) }
+                    if (snapshot.exists()) {
+                        val carritoSnapshot = snapshot.children.first()
+                        val productosSnapshot = carritoSnapshot.child("productos")
+
+                        val productosRef = FirebaseDatabase.getInstance().reference.child("Productos")
+
+                        val totalProductos = productosSnapshot.childrenCount.toInt()
+                        var productosCargados = 0
+
+                        for (productoItem in productosSnapshot.children) {
+                            val productoId = productoItem.child("productoId").getValue(String::class.java)
+                            if (productoId != null) {
+                                productosRef.child(productoId)
+                                    .addListenerForSingleValueEvent(object : ValueEventListener {
+                                        override fun onDataChange(productoSnapshot: DataSnapshot) {
+                                            val producto = productoSnapshot.getValue(CarritoItem::class.java)
+                                            if (producto != null) {
+                                                producto.id = productoSnapshot.key.toString()
+                                                cartItems.add(producto)
+                                            }
+                                            productosCargados++
+                                            if (productosCargados == totalProductos) {
+                                                cartAdapter.notifyDataSetChanged()
+                                                actualizarTotal()
+                                            }
+                                        }
+
+                                        override fun onCancelled(error: DatabaseError) {}
+                                    })
+                            }
+                        }
+                    } else {
+                        Toast.makeText(this@CarritoActivity, "No se encontró carrito", Toast.LENGTH_SHORT).show()
                     }
-                    cartAdapter.notifyDataSetChanged()
-                    actualizarTotal()
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -69,6 +100,7 @@ class CarritoActivity : AppCompatActivity() {
                 }
             })
     }
+
 
     private fun eliminarProducto(item: CarritoItem) {
         database.child(item.id).removeValue()
@@ -84,7 +116,8 @@ class CarritoActivity : AppCompatActivity() {
     }
 
     private fun actualizarTotal() {
-        val total = cartItems.sumOf { it.precio }
+        val total = cartItems.sumOf { it.precio.toDouble() }
         binding.totalPrice.text = "Total: $${"%.2f".format(total)}"
     }
+
 }

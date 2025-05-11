@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/paymentTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Información de envío"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingBottom="16dp" />
+
+    <EditText
+        android:id="@+id/addressInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Dirección"
+        android:inputType="textPostalAddress"
+        android:padding="8dp" />
+
+    <EditText
+        android:id="@+id/phoneInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Teléfono"
+        android:inputType="phone"
+        android:padding="8dp"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/paymentMethodLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Método de Pago"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp" />
+
+    <RadioGroup
+        android:id="@+id/paymentMethodGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/cashOnDeliveryOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contra Entrega"
+            android:checked="true" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/finishButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Finalizar Pedido"
+        android:layout_marginTop="24dp" />
+</LinearLayout>

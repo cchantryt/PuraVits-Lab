@@ -83,9 +83,9 @@ class MainActivity : Navigation() {
 *
 * FLOW
 * Los productos en mainactivity son mostrados en cartas, tiene nombre, imagen del producto, precio, boton "Agregar al carrito" y boton "Beneficios".
-* Cambiar barra inferior: Personalizar -> Carrito -> Comunidad
 * Personalizar trae los productos del carrito de la base de datos y permite cambiar parametros, luego se guardan en la base de datos.
-* Carrito trae los productos del carrito de la base de datos, permite ver el total a pagar y permite ir a la pantalla de pedido que solicita datos de envio (Pagos contraentrega).
+*
+* Carrito: No trae los productos de la base de datos
 *
 * FUNCIONES
 * */
