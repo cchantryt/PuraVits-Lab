@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="12dp">
+        android:padding="12dp"
+        android:background="@color/fondo_secundario">
 
         <!-- Imagen del producto -->
         <ImageView
@@ -29,7 +30,7 @@
             android:text="Nombre del producto"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/texto_principal"
             android:layout_marginTop="8dp" />
 
         <!-- Precio -->
@@ -55,7 +56,8 @@
                 android:layout_height="wrap_content"
                 android:text="Personalizar"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:backgroundTint="@color/white" />
+                android:backgroundTint="@color/accion"
+                android:textColor="@color/fondo"/>
 
             <Button
                 android:id="@+id/benefitsButton"
@@ -63,7 +65,8 @@
                 android:layout_height="wrap_content"
                 android:text="Beneficios"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/accion"
+                android:textColor="@color/fondo"
                 android:layout_marginStart="8dp" />
 
             <ImageButton

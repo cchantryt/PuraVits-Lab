@@ -1,64 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/fondo"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/paymentTitle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Información de envío"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:paddingBottom="16dp" />
+        android:orientation="vertical"
+        android:padding="24dp">
 
-    <EditText
-        android:id="@+id/addressInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Dirección"
-        android:inputType="textPostalAddress"
-        android:padding="8dp" />
-
-    <EditText
-        android:id="@+id/phoneInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Teléfono"
-        android:inputType="phone"
-        android:padding="8dp"
-        android:layout_marginTop="8dp" />
-
-    <TextView
-        android:id="@+id/paymentMethodLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Método de Pago"
-        android:textSize="16sp"
-        android:layout_marginTop="16dp" />
-
-    <RadioGroup
-        android:id="@+id/paymentMethodGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <RadioButton
-            android:id="@+id/cashOnDeliveryOption"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/paymentTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Contra Entrega"
-            android:checked="true" />
-    </RadioGroup>
+            android:text="Información de Envío"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/texto_principal"
+            android:gravity="center"
+            android:paddingBottom="24dp" />
 
-    <Button
-        android:id="@+id/finishButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Finalizar Pedido"
-        android:layout_marginTop="24dp" />
-</LinearLayout>
+        <EditText
+            android:id="@+id/addressInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Dirección"
+            android:backgroundTint="@color/accion"
+            android:inputType="textPostalAddress"
+            android:textColor="@color/texto_principal"
+            android:textColorHint="@color/texto_secundario"
+            android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/phoneInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Teléfono"
+            android:inputType="phone"
+            android:backgroundTint="@color/accion"
+            android:textColor="@color/texto_principal"
+            android:textColorHint="@color/texto_secundario"
+            android:layout_marginTop="16dp"
+            android:padding="12dp" />
+
+        <TextView
+            android:id="@+id/paymentMethodLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Método de Pago"
+            android:textSize="18sp"
+            android:textColor="@color/texto_principal"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp" />
+
+        <RadioGroup
+            android:id="@+id/paymentMethodGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp">
+
+            <RadioButton
+                android:id="@+id/cashOnDeliveryOption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contra Entrega"
+                android:textColor="@color/texto_principal"
+                android:buttonTint="@color/enfasis" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/finishButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Finalizar Pedido"
+            android:backgroundTint="@color/accion"
+            android:textColor="@color/fondo"
+            android:layout_marginTop="32dp"
+            android:padding="14dp"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+    </LinearLayout>
+</ScrollView>

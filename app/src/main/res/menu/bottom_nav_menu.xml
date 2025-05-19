@@ -3,16 +3,19 @@
 
     <item
         android:id="@+id/nav_customize"
+        android:tint="@color/accion"
         android:icon="@drawable/settinglines"
         android:title="Personalizar" />
 
     <item
         android:id="@+id/nav_community"
+        android:tint="@color/accion"
         android:icon="@drawable/people"
         android:title="Comunidad" />
 
     <item
         android:id="@+id/carrito"
+        android:tint="@color/accion"
         android:icon="@drawable/cart"
         android:title="Carrito" />
 

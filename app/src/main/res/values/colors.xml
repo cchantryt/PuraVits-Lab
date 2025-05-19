@@ -12,4 +12,14 @@
     <color name="dark_red">#FF8B0000</color>  <!-- Rojo oscuro -->
     <color name="dark_green">#FF006400</color><!-- Verde oscuro -->
     <color name="dark_blue">#FF00008B</color> <!-- Azul oscuro -->
+
+    <color name="primario">#E6399B</color>
+    <color name="secundario">#F7C948</color>
+    <color name="fondo">#FFF9F5</color>
+    <color name="fondo_secundario">#F2E3D9</color>
+    <color name="enfasis">#6DBA82</color>
+    <color name="texto_principal">#333333</color>
+    <color name="texto_secundario">#777777</color>
+    <color name="accion">#FF6F61</color>
+
 </resources>

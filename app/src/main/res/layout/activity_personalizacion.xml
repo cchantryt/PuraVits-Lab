@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".views.PersonalizacionActivity">
+    tools:context=".views.PersonalizacionActivity"
+    android:background="@color/fondo"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

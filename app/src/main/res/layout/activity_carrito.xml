@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@android:color/white">
+    android:background="@color/fondo">
 
     <!-- Botón de regreso -->
     <ImageButton
@@ -13,6 +13,7 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/arrow_back"
         android:contentDescription="Volver"
+
         android:layout_gravity="start" />
 
     <!-- Título -->
@@ -24,7 +25,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
-        android:textColor="@color/black"
+        android:textColor="@color/texto_principal"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="12dp" />
 
@@ -34,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@android:color/white"
+        android:background="@color/fondo"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp" />
 
@@ -53,7 +54,7 @@
             android:text="Total: $0.00"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/texto_principal"
             android:layout_marginEnd="16dp" />
 
         <Button
@@ -62,8 +63,8 @@
             android:layout_height="wrap_content"
             android:text="Finalizar Compra"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/black" />
+            android:textColor="@color/texto_principal"
+            android:backgroundTint="@color/accion" />
     </LinearLayout>
 
 </LinearLayout>

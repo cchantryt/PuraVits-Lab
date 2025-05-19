@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="#FAFAFA">
+    android:background="@color/fondo">
 
     <!-- Botón Atrás -->
     <ImageButton
@@ -26,7 +26,7 @@
         android:text="Perfil del Usuario"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:textColor="#333333"
+        android:textColor="@color/texto_principal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="24dp"
+            android:background="@color/fondo_secundario">
 
             <TextView
                 android:id="@+id/textViewName"
@@ -57,7 +58,7 @@
                 android:text="Nombre"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="#555555"
+                android:textColor="@color/texto_principal"
                 android:layout_marginBottom="12dp"/>
 
             <TextView
@@ -67,7 +68,7 @@
                 android:text="Apellido"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="#555555"
+                android:textColor="@color/texto_principal"
                 android:layout_marginBottom="12dp"/>
 
             <TextView
@@ -77,7 +78,7 @@
                 android:text="Correo"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="#555555"/>
+                android:textColor="@color/texto_principal"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -89,7 +90,7 @@
         android:layout_marginTop="32dp"
         android:text="Historial de Pedidos"
         android:textAllCaps="false"
-        android:backgroundTint="#00BCD4"
+        android:backgroundTint="@color/accion"
         android:textColor="#FFFFFF"
         android:drawableStart="@drawable/historial"
         android:drawablePadding="8dp"
@@ -102,15 +103,16 @@
         android:id="@+id/buttonLogout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Cerrar Sesión"
-        android:textAllCaps="false"
-        android:backgroundTint="#FF5252"
-        android:textColor="#FFFFFF"
+        android:layout_marginTop="356dp"
+        android:backgroundTint="@color/dark_red"
         android:drawableStart="@drawable/cerrarsesion"
         android:drawablePadding="8dp"
-        app:layout_constraintTop_toBottomOf="@id/buttonHistorialCompras"
+        android:text="Cerrar Sesión"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/buttonHistorialCompras" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

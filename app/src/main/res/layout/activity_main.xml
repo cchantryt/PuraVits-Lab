@@ -1,93 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-            <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/fondo"
+    android:fitsSystemWindows="true"
+    tools:context="MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/fondo_secundario"
+        android:fitsSystemWindows="true">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/topToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:paddingHorizontal="16dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetEnd="0dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:background="#FFF8F8"
-                android:fitsSystemWindows="true"
-                tools:context="MainActivity">
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-                <!-- Barra Superior con margen para status bar -->
-                <com.google.android.material.appbar.AppBarLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/appTitle"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#00BCD4"
-                    android:fitsSystemWindows="true">
+                    android:text="PuraVits Lab"
+                    android:textColor="@color/texto_principal"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp" />
 
-                    <androidx.appcompat.widget.Toolbar
-                        android:id="@+id/topToolbar"
-                        android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
-                        android:paddingHorizontal="16dp"
-                        app:contentInsetStart="0dp"
-                        app:contentInsetEnd="0dp">
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical">
+                <ImageButton
+                    android:id="@+id/profileButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleType="centerInside"
+                    android:adjustViewBounds="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Perfil de Usuario"
+                    android:src="@drawable/user"
+                    android:tint="@color/accion"/>
 
-                            <TextView
-                                android:id="@+id/appTitle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="PuraVits Lab"
-                                android:textStyle="bold"
-                                android:textSize="18sp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginEnd="16dp" />
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
-                            <View
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                android:layout_weight="1" />
+    <!-- Contenido principal con margen adecuado -->
+    <FrameLayout
+        android:id="@+id/mainContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginBottom="70dp"
+        android:paddingTop="8dp">
 
-                            <ImageButton
-                                android:id="@+id/profileButton"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:scaleType="centerInside"
-                                android:adjustViewBounds="true"
-                                android:background="?attr/selectableItemBackgroundBorderless"
-                                android:contentDescription="Perfil de Usuario"
-                                android:src="@drawable/user" />
+        <!-- RecyclerView para mostrar los productos -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewProductos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_producto" />
+    </FrameLayout>
 
-                        </LinearLayout>
-                    </androidx.appcompat.widget.Toolbar>
-                </com.google.android.material.appbar.AppBarLayout>
+<com.google.android.material.bottomnavigation.BottomNavigationView
+    android:id="@+id/bottomNavigationView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@color/fondo_secundario"
+    app:menu="@menu/bottom_nav_menu"
+    app:labelVisibilityMode="labeled"
+    app:itemIconSize="24dp"
+    app:itemIconTint="@color/texto_principal"
+    app:itemTextColor="@color/texto_principal"
+    android:paddingTop="4dp"
+    android:paddingBottom="1dp"/>
 
-                <!-- Contenido principal con margen adecuado -->
-                <FrameLayout
-                    android:id="@+id/mainContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    android:layout_marginBottom="70dp"
-                    android:paddingTop="8dp">
-
-                    <!-- RecyclerView para mostrar los productos -->
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerViewProductos"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        tools:listitem="@layout/item_producto" />
-                </FrameLayout>
-
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottomNavigationView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="#00BCD4"
-                app:menu="@menu/bottom_nav_menu"
-                app:labelVisibilityMode="labeled"
-                app:itemIconSize="24dp"
-                app:itemIconTint="@color/black"
-                app:itemTextColor="@color/black"
-                android:paddingTop="4dp"
-                android:paddingBottom="1dp"/>
-
-            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

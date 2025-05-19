@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:background="@color/fondo_secundario">
 
         <ImageView
             android:id="@+id/productImage"
@@ -23,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
+            android:textColor="@color/texto_principal"
             android:textStyle="bold"
             android:paddingTop="8dp" />
 
@@ -31,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
+            android:textColor="@color/texto_principal"
             android:paddingTop="4dp" />
 
         <LinearLayout
@@ -43,14 +46,20 @@
                 android:id="@+id/addToCartButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Agregar al carrito" />
+                android:text="Agregar al carrito"
+                android:backgroundTint="@color/accion"
+                android:textColor="@color/fondo"
+                />
 
             <Button
                 android:id="@+id/benefitsButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Beneficios"
-                android:layout_marginStart="8dp" />
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/accion"
+                android:textColor="@color/fondo"
+                />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

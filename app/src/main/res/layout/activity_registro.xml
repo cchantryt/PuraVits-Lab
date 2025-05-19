@@ -1,70 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/fondo"
     tools:context=".views.RegistroActivity">
 
-<LinearLayout
-    android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="24dp">
-
-        <ImageButton
-            android:id="@+id/backbutton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Botón atras"
-            android:src="@drawable/arrow_back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.023" />
-
-        <EditText
-            android:id="@+id/nombre"
-            android:hint="Nombre"
-            android:inputType="textPassword"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
 
-        <EditText
-            android:id="@+id/apellido"
-            android:hint="Apellido"
-            android:inputType="textPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                <ImageButton
+                    android:id="@+id/backbutton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Botón atrás"
+                    android:src="@drawable/arrow_back"
+                    android:tint="@color/accion"
+                    android:layout_gravity="start"
+                    android:layout_marginBottom="16dp"/>
 
-        <EditText
-            android:id="@+id/correo"
-            android:hint="Correo"
-            android:inputType="textEmailAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Crear Cuenta"
+                    android:textColor="@color/texto_principal"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginBottom="24dp" />
 
-        <EditText
-            android:id="@+id/contrasena"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/nombre"
+                    android:hint="Nombre"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_secundario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp" />
 
-        <Button
-            android:id="@+id/botonRegistro"
-            android:text="Registrarse"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/apellido"
+                    android:hint="Apellido"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_secundario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:padding="12dp" />
 
-        <Button
-            android:id="@+id/buttonInicioSesion"
-            android:text="Iniciar sesión"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/correo"
+                    android:hint="Correo electrónico"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_secundario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:padding="12dp" />
 
+                <EditText
+                    android:id="@+id/contrasena"
+                    android:hint="Contraseña"
+                    android:inputType="textPassword"
+                    android:textColor="@color/texto_principal"
+                    android:textColorHint="@color/texto_secundario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:padding="12dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <Button
+                    android:id="@+id/botonRegistro"
+                    android:text="Registrarse"
+                    android:textColor="@color/fondo"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:padding="14dp"
+                    android:backgroundTint="@color/accion" />
+
+                <Button
+                    android:id="@+id/buttonInicioSesion"
+                    android:text="Ya tengo una cuenta"
+                    android:textColor="@color/accion"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:backgroundTint="@color/fondo_secundario" />
+
+        </LinearLayout>
+</ScrollView>
