@@ -8,13 +8,13 @@
     <!-- Botón de regreso -->
     <ImageButton
         android:id="@+id/backbutton"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="start"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/arrow_back"
         android:contentDescription="Volver"
 
-        android:layout_gravity="start" />
+        android:src="@drawable/arrow_back" />
 
     <!-- Título -->
     <TextView
