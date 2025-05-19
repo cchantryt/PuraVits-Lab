@@ -47,7 +47,10 @@ class PerfilActivity : AppCompatActivity() {
             controller.logout()
             finish()
         }
-
+        // Configurar botón de retroceso
+        binding.backbutton.setOnClickListener {
+            finish()
+        }
         binding.backbutton.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

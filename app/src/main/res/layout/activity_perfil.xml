@@ -10,13 +10,13 @@
     <!-- Botón Atrás -->
     <ImageButton
         android:id="@+id/backbutton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="Botón atrás"
         android:src="@drawable/arrow_back"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Título centrado -->
     <TextView
