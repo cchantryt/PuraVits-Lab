@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@color/fondo"
     android:padding="16dp">
 
     <TextView
@@ -16,6 +17,8 @@
         android:id="@+id/spinnerProductos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:outlineSpotShadowColor="@color/accion"
+        android:backgroundTint="@color/accion"
         android:layout_marginTop="16dp" />
 
     <EditText
