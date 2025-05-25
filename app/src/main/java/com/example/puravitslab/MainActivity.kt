@@ -46,6 +46,13 @@ class MainActivity : Navigation() {
             startActivity(intent)
             finish()
         }
+
+        binding.googleButton.setOnClickListener {
+            val url = "https://vt.tiktok.com/ZShcKA2c1/"
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = android.net.Uri.parse(url)
+            startActivity(intent)
+        }
     }
 
     private fun cargarProductos(adapter: ProductoAdapter) {

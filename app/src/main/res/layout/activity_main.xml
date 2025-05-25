@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayoutRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/fondo"
     android:fitsSystemWindows="true"
-    tools:context="MainActivity">
+    tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
+        android:id="@+id/appBar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/fondo_secundario"
-        android:fitsSystemWindows="true">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/topToolbar"
@@ -55,40 +59,49 @@
                     android:contentDescription="Perfil de Usuario"
                     android:src="@drawable/user"
                     android:tint="@color/accion"/>
-
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- Contenido principal con margen adecuado -->
-    <FrameLayout
-        android:id="@+id/mainContent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_marginBottom="70dp"
-        android:paddingTop="8dp">
+    <!-- RecyclerView con margen inferior para dejar espacio al botón -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewProductos"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/appBar"
+        app:layout_constraintBottom_toTopOf="@id/googleButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_producto" />
 
-        <!-- RecyclerView para mostrar los productos -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewProductos"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/item_producto" />
-    </FrameLayout>
+    <!-- Botón funcional sobre el RecyclerView -->
+    <Button
+        android:id="@+id/googleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nuestros Balsamo"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/accion"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-<com.google.android.material.bottomnavigation.BottomNavigationView
-    android:id="@+id/bottomNavigationView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="bottom"
-    android:background="@color/fondo_secundario"
-    app:menu="@menu/bottom_nav_menu"
-    app:labelVisibilityMode="labeled"
-    app:itemIconSize="24dp"
-    app:itemIconTint="@color/texto_principal"
-    app:itemTextColor="@color/texto_principal"
-    android:paddingTop="4dp"
-    android:paddingBottom="1dp"/>
+    <!-- Menú de navegación inferior -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/fondo_secundario"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="labeled"
+        app:itemIconSize="24dp"
+        app:itemIconTint="@color/texto_principal"
+        app:itemTextColor="@color/texto_principal"
+        android:paddingTop="4dp"
+        android:paddingBottom="1dp"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
