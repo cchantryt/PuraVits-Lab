@@ -1,8 +1,9 @@
 package com.example.puravitslab.models
 
 data class Producto(
-    val id: String = "",
+    var id: String = "",
     val nombre: String = "",
+    val precio: Double = 0.0,
     val imagenUrl: String = "",
-    val precio: Double = 0.0
+    val descripcion: String = ""
 )
