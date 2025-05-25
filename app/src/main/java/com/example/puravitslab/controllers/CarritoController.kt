@@ -38,30 +38,5 @@ class CarritoController(private val context: Context) {
             .addOnFailureListener { e -> onFailure(e) }
     }
 
-    fun agregarProductoPersonalizado(
-        producto: ProductoPersonalizado,
-        onSuccess: () -> Unit = {},
-        onFailure: (Exception) -> Unit = {}
-    ) {
-        val userId = auth.currentUser?.uid ?: run {
-            onFailure(Exception("Usuario no autenticado"))
-            return
-        }
 
-        val carritoRef = database.child("users").child(userId).child("carrito")
-        val itemId = "personalizado_${System.currentTimeMillis()}"
-
-        val item = CarritoItem(
-            productoId = itemId,
-            nombre = producto.nombre,
-            precio = producto.precioBase,
-            esPersonalizado = true,
-            colorPersonalizado = producto.color,
-            nombrePersonalizado = producto.nombre
-        )
-
-        carritoRef.child(itemId).setValue(item)
-            .addOnSuccessListener { onSuccess() }
-            .addOnFailureListener { e -> onFailure(e) }
-    }
 }

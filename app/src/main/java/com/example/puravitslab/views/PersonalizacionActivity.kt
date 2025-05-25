@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.puravitslab.R
-import com.example.puravitslab.controllers.CarritoController
 import com.example.puravitslab.controllers.PersonalizacionController
 import com.example.puravitslab.databinding.ActivityPersonalizacionBinding
 import com.example.puravitslab.models.ProductoPersonalizado
@@ -17,15 +16,13 @@ class PersonalizacionActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPersonalizacionBinding
     private lateinit var controller: PersonalizacionController
-    private var colorSeleccionado: String = "#FF0000" // Rojo por defecto
-    private lateinit var carritoController: CarritoController
+    private var colorSeleccionado: String = "#FF0000"
 
     companion object {
         private val COLOR_MAP = mapOf(
             R.color.red to "#FF0000",
             R.color.green to "#00FF00",
-            R.color.blue to "#0000FF",
-
+            R.color.blue to "#0000FF"
         )
     }
 
@@ -33,8 +30,6 @@ class PersonalizacionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPersonalizacionBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        controller = PersonalizacionController(this)
-        carritoController = CarritoController(this)
 
         controller = PersonalizacionController(this)
         setupColorButtons()
@@ -46,7 +41,6 @@ class PersonalizacionActivity : AppCompatActivity() {
         binding.buttonRed.setOnClickListener { setColor(R.color.red) }
         binding.buttonGreen.setOnClickListener { setColor(R.color.green) }
         binding.buttonBlue.setOnClickListener { setColor(R.color.blue) }
-
     }
 
     private fun setColor(colorResId: Int) {
@@ -61,40 +55,42 @@ class PersonalizacionActivity : AppCompatActivity() {
     private fun setupSaveButton() {
         binding.buttonSave.setOnClickListener {
             val nombreBalsamo = binding.editBalmName.text.toString()
-            if (controller.validarNombreBalsamo(nombreBalsamo)) {
-                guardarPersonalizacion(nombreBalsamo)
-            } else {
-                Toast.makeText(this, "Por favor ingresa un nombre válido", Toast.LENGTH_SHORT).show()
+
+            if (!controller.validarNombreBalsamo(nombreBalsamo)) {
+                showError("El nombre debe tener entre 2 y 30 caracteres")
+                return@setOnClickListener
             }
+
+            confirmarGuardado(nombreBalsamo)
         }
     }
 
-    private fun guardarPersonalizacion(nombreBalsamo: String) {
-        controller.mostrarDialogoConfirmacion(nombreBalsamo,
+    private fun confirmarGuardado(nombreBalsamo: String) {
+        controller.mostrarDialogoConfirmacion(
+            nombreBalsamo = nombreBalsamo,
             onConfirm = {
-                controller.guardarProductoPersonalizado(
-                    nombre = nombreBalsamo,
-                    onSuccess = { productoId ->
-                        // Crear el objeto producto personalizado
-                        val producto = ProductoPersonalizado(
-                            id = productoId,
-                            nombre = controller.obtenerNombreBalsamo(nombreBalsamo),
-                            color = colorSeleccionado,
-                            usuarioId = FirebaseAuth.getInstance().currentUser?.uid ?: "",
-                            precioBase = 5000.0 // Precio base
-                        )
+                // Mostrar progreso
+                binding.buttonSave.isEnabled = false
 
-                        // Agregar al carrito
-                        carritoController.agregarProductoPersonalizado(producto)
-                        finish()
-                    },
-                    onFailure = { error ->
-                        Toast.makeText(this, "Error: $error", Toast.LENGTH_SHORT).show()
-                    }
-                )
+                guardarProducto(nombreBalsamo)
             },
             onCancel = {
-                Toast.makeText(this, "Creación cancelada", Toast.LENGTH_SHORT).show()
+                showMessage("Creación cancelada")
+            }
+        )
+    }
+
+    private fun guardarProducto(nombreBalsamo: String) {
+        controller.guardarProductoPersonalizado(
+            nombre = nombreBalsamo,
+            onSuccess = { producto ->
+                showSuccess("¡Bálsamo creado!")
+                setResult(RESULT_OK)
+                finish()
+            },
+            onFailure = { error ->
+                showError(error)
+                binding.buttonSave.isEnabled = true
             }
         )
     }
@@ -105,20 +101,12 @@ class PersonalizacionActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToMainWithResult(productoId: String) {
-        val resultIntent = Intent().apply {
-            putExtra("nuevo_producto_id", productoId)
-        }
-        setResult(RESULT_OK, resultIntent)
-        finish()
-    }
-
     private fun showError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun showSuccess(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     private fun showMessage(message: String) {

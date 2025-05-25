@@ -11,7 +11,7 @@ import java.util.*
 class PersonalizacionController(private val context: Context) {
     private val database = FirebaseDatabase.getInstance().reference
     private val auth = FirebaseAuth.getInstance()
-    private var colorSeleccionado: String = "#FF0000" // Rojo por defecto
+    private var colorSeleccionado: String = "#FF0000"
 
     fun setColorSeleccionado(colorHex: String) {
         colorSeleccionado = colorHex
@@ -23,16 +23,16 @@ class PersonalizacionController(private val context: Context) {
         onCancel: (() -> Unit)? = null
     ) {
         AlertDialog.Builder(context)
-            .setTitle("Confirmación")
-            .setMessage("¿Estás seguro de guardar '${nombreBalsamo.ifEmpty { "Mi Bálsamo" }}'?")
-            .setPositiveButton("Sí") { _, _ -> onConfirm() }
-            .setNegativeButton("No") { _, _ -> onCancel?.invoke() }
+            .setTitle("Confirmar creación")
+            .setMessage("¿Crear bálsamo '${nombreBalsamo.ifEmpty { "Mi Bálsamo" }}'?")
+            .setPositiveButton("Crear") { _, _ -> onConfirm() }
+            .setNegativeButton("Cancelar") { _, _ -> onCancel?.invoke() }
             .setCancelable(false)
             .show()
     }
 
     fun validarNombreBalsamo(nombre: String): Boolean {
-        return nombre.trim().length in 2..30 // Entre 2 y 30 caracteres
+        return nombre.trim().length in 2..30
     }
 
     fun obtenerNombreBalsamo(nombre: String): String {
@@ -41,25 +41,35 @@ class PersonalizacionController(private val context: Context) {
 
     fun guardarProductoPersonalizado(
         nombre: String,
-        onSuccess: (productoId: String) -> Unit,
+        onSuccess: (producto: ProductoPersonalizado) -> Unit,
         onFailure: (String) -> Unit
     ) {
         val userId = auth.currentUser?.uid ?: run {
-            onFailure("Usuario no autenticado")
+            onFailure("Debes iniciar sesión primero")
             return
         }
 
         val fecha = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+        val productoId = database.child("users").child(userId).child("productosPersonalizados").push().key
+            ?: run {
+                onFailure("Error generando ID")
+                return
+            }
+
         val producto = ProductoPersonalizado(
+            id = productoId,
             nombre = obtenerNombreBalsamo(nombre),
             color = colorSeleccionado,
             usuarioId = userId,
+            precioBase = 5000.0,
             fechaCreacion = fecha
         )
 
-        val newRef = database.child("ProductosPersonalizados").child(userId).push()
-        newRef.setValue(producto.toMap())
-            .addOnSuccessListener { onSuccess(newRef.key ?: "") }
-            .addOnFailureListener { e -> onFailure(e.message ?: "Error al guardar el producto") }
+        database.child("users").child(userId).child("productosPersonalizados").child(productoId)
+            .setValue(producto)
+            .addOnSuccessListener { onSuccess(producto) }
+            .addOnFailureListener { e ->
+                onFailure(e.message ?: "Error al guardar. Intenta nuevamente")
+            }
     }
 }
