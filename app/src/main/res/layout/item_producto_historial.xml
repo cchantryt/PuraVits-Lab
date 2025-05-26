@@ -65,6 +65,16 @@
                 android:textSize="12sp"
                 android:textColor="@color/texto_secundario"
                 android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btnValorar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valorar producto"
+                android:layout_marginTop="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

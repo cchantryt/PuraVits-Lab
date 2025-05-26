@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.puravitslab.adapters.HistorialAdapter
 import com.example.puravitslab.controllers.CarritoController
+import com.example.puravitslab.controllers.ComunidadController
 import com.example.puravitslab.controllers.HistorialPedidosController
 import com.example.puravitslab.databinding.ActivityHistorialPedidosBinding
 import com.example.puravitslab.models.Pedido
@@ -13,10 +14,10 @@ import com.example.puravitslab.models.Producto
 import com.example.puravitslab.models.ProductoPersonalizado
 
 class HistorialPedidosActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityHistorialPedidosBinding
     private lateinit var historialController: HistorialPedidosController
     private lateinit var carritoController: CarritoController
+    private lateinit var comunidadController: ComunidadController
     private lateinit var adapter: HistorialAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +27,7 @@ class HistorialPedidosActivity : AppCompatActivity() {
 
         historialController = HistorialPedidosController()
         carritoController = CarritoController(this)
+        comunidadController = ComunidadController()
 
         binding.backButton.setOnClickListener { finish() }
 
@@ -35,9 +37,9 @@ class HistorialPedidosActivity : AppCompatActivity() {
     private fun cargarHistorial() {
         historialController.cargarHistorial(object : HistorialPedidosController.HistorialPedidosCallback {
             override fun onHistorialCargado(pedidos: List<Pedido>) {
-                adapter = HistorialAdapter(pedidos) { pedido ->
+                adapter = HistorialAdapter(pedidos, { pedido ->
                     repetirPedido(pedido)
-                }
+                }, this@HistorialPedidosActivity)
                 binding.recyclerHistorial.adapter = adapter
                 binding.recyclerHistorial.layoutManager = LinearLayoutManager(this@HistorialPedidosActivity)
             }
@@ -46,6 +48,35 @@ class HistorialPedidosActivity : AppCompatActivity() {
                 Toast.makeText(this@HistorialPedidosActivity, mensaje, Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    // En HistorialPedidosActivity.kt
+    fun guardarValoracion(
+        productoId: String,
+        comentario: String,
+        valoracion: Int,
+        color: String,
+        aroma: String,
+        hidratacion: Int,
+        precio: Double
+    ) {
+        comunidadController.enviarValoracion(
+            productoId,
+            comentario,
+            valoracion,
+            color,
+            aroma,
+            hidratacion,
+            precio
+        ) { exito ->
+            runOnUiThread {
+                if (exito) {
+                    Toast.makeText(this, "Valoración enviada", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Error al enviar valoración", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     private fun repetirPedido(pedido: Pedido) {
@@ -86,7 +117,7 @@ class HistorialPedidosActivity : AppCompatActivity() {
             } else {
                 carritoController.agregarProducto(
                     Producto(
-                        id = "", // Se generará nuevo ID
+                        id = "",
                         nombre = producto.nombre,
                         precio = producto.precio
                     ),
