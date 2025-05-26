@@ -74,11 +74,8 @@ class CarritoAdapter(
 
             // Configurar clics
             binding.deleteButton.setOnClickListener { onDeleteClick(item) }
-            binding.botonPersonalizar.setOnClickListener { onPersonalizarClick(item) }
             binding.benefitsButton.setOnClickListener { onBenefitsClick(item) }
 
-            // Ocultar botón de personalizar si ya es personalizado
-            binding.botonPersonalizar.visibility = if (item.esPersonalizado) View.GONE else View.VISIBLE
         }
     }
 

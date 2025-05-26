@@ -121,17 +121,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:gravity="end"
+            android:gravity="center"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/botonPersonalizar"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/accion"
-                android:text="Personalizar"
-                android:textColor="@color/fondo" />
 
             <Button
                 android:id="@+id/benefitsButton"
@@ -154,6 +145,7 @@
                 android:padding="0dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/eliminar" />
+
 
         </LinearLayout>
     </LinearLayout>
