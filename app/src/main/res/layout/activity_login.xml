@@ -60,12 +60,15 @@
 
     <Button
     android:id="@+id/buttoRegisro"
-    android:layout_width="match_parent"
-    android:layout_height="55dp"
-    android:text="Registrarse"
-    android:backgroundTint="@color/accion"
-    android:textColor="@color/texto_principal"
     android:elevation="4dp"
-    android:letterSpacing="0.05" />
+    android:letterSpacing="0.05"
+    android:text="Registrarse"
+    android:textColor="@color/accion"
+    android:textAllCaps="false"
+    android:textSize="16sp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    android:backgroundTint="@color/fondo_secundario" />
 
 </LinearLayout>

@@ -10,24 +10,15 @@ import com.example.puravitslab.databinding.ActivityBeneficiosBinding
 class BeneficiosActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityBeneficiosBinding
-    private lateinit var controller: BeneficiosController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBeneficiosBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        controller = BeneficiosController(this, binding.benefitsContainer)
-        controller.showBenefits()
-
-        binding.fabShare.setOnClickListener {
-            controller.shareBenefits(it)
-        }
-
+        // Acción del botón atrás
         binding.backbutton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            onBackPressedDispatcher.onBackPressed()
         }
     }
 }

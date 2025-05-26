@@ -10,6 +10,7 @@ import com.example.puravitslab.controllers.CarritoController
 import com.example.puravitslab.databinding.ActivityMainBinding
 import com.example.puravitslab.models.Producto
 import com.example.puravitslab.utils.Navigation
+import com.example.puravitslab.views.BeneficiosActivity
 import com.example.puravitslab.views.PerfilActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -61,6 +62,8 @@ class MainActivity : Navigation() {
             onViewBenefits = { producto ->
                 // Implementar vista de beneficios
                 Toast.makeText(this, "Beneficios de ${producto.nombre}", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, BeneficiosActivity::class.java)
+                startActivity(intent)
             }
         )
         binding.recyclerViewProductos.adapter = adapter
