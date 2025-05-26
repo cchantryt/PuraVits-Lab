@@ -72,17 +72,7 @@ class MainActivity : Navigation() {
         binding.recyclerViewProductos.adapter = adapter
     }
 
-    private fun agregarAlCarrito(producto: Producto) {
-        carritoController.agregarProducto(producto,
-            onSuccess = {
-                Toast.makeText(this, "${producto.nombre} añadido al carrito", Toast.LENGTH_SHORT).show()
-            },
-            onFailure = { error ->
-                Toast.makeText(this, "Error al añadir: $error", Toast.LENGTH_SHORT).show()
-                Log.e("MainActivity", "Error al añadir al carrito", error)
-            }
-        )
-    }
+
 
     private fun mostrarBeneficios(producto: Producto) {
         Toast.makeText(this, "Mostrando beneficios de ${producto.nombre}", Toast.LENGTH_SHORT).show()

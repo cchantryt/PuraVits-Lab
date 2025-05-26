@@ -11,6 +11,8 @@ import com.example.puravitslab.controllers.PersonalizacionController
 import com.example.puravitslab.databinding.ActivityPersonalizacionBinding
 import com.example.puravitslab.models.ProductoPersonalizado
 import com.google.firebase.auth.FirebaseAuth
+import android.widget.ArrayAdapter
+import android.widget.SeekBar
 
 class PersonalizacionActivity : AppCompatActivity() {
 
@@ -35,6 +37,8 @@ class PersonalizacionActivity : AppCompatActivity() {
         setupColorButtons()
         setupSaveButton()
         setupBackButton()
+        setupAromaSpinner()
+        setupHidratacionSeekBar()
     }
 
     private fun setupColorButtons() {
@@ -80,11 +84,17 @@ class PersonalizacionActivity : AppCompatActivity() {
         )
     }
 
+    // PersonalizacionActivity.kt
     private fun guardarProducto(nombreBalsamo: String) {
-        controller.guardarProductoPersonalizado(
+        val aromaSeleccionado = binding.spinnerAroma.selectedItem.toString()
+        val nivelHidratacion = binding.seekBarHidratacion.progress + 1 // progress es 0-based
+
+        controller.guardarYAgregarAlCarrito(
             nombre = nombreBalsamo,
+            aroma = aromaSeleccionado,
+            hidratacion = nivelHidratacion,
             onSuccess = { producto ->
-                showSuccess("¡Bálsamo creado!")
+                showSuccess("¡Bálsamo creado y añadido al carrito!")
                 setResult(RESULT_OK)
                 finish()
             },
@@ -112,4 +122,26 @@ class PersonalizacionActivity : AppCompatActivity() {
     private fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
+
+    private fun setupAromaSpinner() {
+        val aromas = resources.getStringArray(R.array.aromas)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, aromas)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerAroma.adapter = adapter
+    }
+
+    private fun setupHidratacionSeekBar() {
+        binding.seekBarHidratacion.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                binding.textHidratacion.text = "Nivel: ${progress + 1}"
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {}
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {}
+        })
+    }
+
+
 }

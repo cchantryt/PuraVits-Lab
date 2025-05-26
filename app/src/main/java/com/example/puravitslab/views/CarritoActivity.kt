@@ -31,6 +31,9 @@ class CarritoActivity : AppCompatActivity() {
         setupRecyclerView()
         setupButtons()
         cargarCarrito()
+        setupAdapter()
+        cargarCarrito()
+        setupTotal()
     }
 
     private fun setupRecyclerView() {
@@ -39,9 +42,29 @@ class CarritoActivity : AppCompatActivity() {
             items = carritoItems,
             onDeleteClick = { eliminarProducto(it) },
             onPersonalizarClick = { personalizarProducto(it) },
-            onBenefitsClick = { verBeneficios(it) }
+            onBenefitsClick = { verBeneficios(it) },
+            onCantidadChanged = { item, nuevaCantidad ->
+                // Lógica para actualizar la cantidad
+                actualizarCantidadEnFirebase(item, nuevaCantidad)
+            }
         )
         binding.cartRecyclerView.adapter = adapter
+    }
+    private fun actualizarCantidadEnFirebase(item: CarritoItem, nuevaCantidad: Int) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        // 1. Actualizar localmente
+        val index = carritoItems.indexOfFirst { it.productoId == item.productoId }
+        if (index != -1) {
+            carritoItems[index] = item.copy(cantidad = nuevaCantidad)
+            adapter.notifyItemChanged(index)
+            actualizarTotal()
+        }
+
+        // 2. Actualizar en Firebase
+        FirebaseDatabase.getInstance().reference
+            .child("users").child(userId).child("carrito").child(item.productoId)
+            .child("cantidad").setValue(nuevaCantidad)
     }
 
     private fun setupButtons() {
@@ -120,10 +143,52 @@ class CarritoActivity : AppCompatActivity() {
     }
 
     private fun actualizarTotal() {
-        binding.totalPrice.text = "Total: $${"%.2f".format(calcularTotal())}"
+        val total = carritoItems.sumOf { it.precio * it.cantidad }
+        binding.totalPrice.text = "Total: $${"%.2f".format(total)}"
     }
 
     private fun calcularTotal(): Double {
         return carritoItems.sumOf { it.precio }
+    }
+
+
+    private fun setupAdapter() {
+        adapter = CarritoAdapter(
+            items = carritoItems,
+            onDeleteClick = { eliminarProducto(it) },
+            onPersonalizarClick = { personalizarProducto(it) },
+            onBenefitsClick = { verBeneficios(it) },
+            onCantidadChanged = { item, nuevaCantidad ->
+                actualizarCantidad(item, nuevaCantidad)
+            }
+        )
+        binding.cartRecyclerView.adapter = adapter
+    }
+
+    private fun actualizarCantidad(item: CarritoItem, nuevaCantidad: Int) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        // Actualizar localmente
+        val index = carritoItems.indexOfFirst { it.productoId == item.productoId }
+        if (index != -1) {
+            carritoItems[index] = item.copy(cantidad = nuevaCantidad)
+            adapter.notifyItemChanged(index)
+        }
+
+        // Actualizar en Firebase
+        FirebaseDatabase.getInstance().reference
+            .child("users").child(userId).child("carrito").child(item.productoId)
+            .child("cantidad").setValue(nuevaCantidad)
+
+        setupTotal() // Actualizar el total
+    }
+
+    private fun setupTotal() {
+        val total = carritoItems.sumOf { it.precio * it.cantidad }
+        binding.totalPrice.text = "Total: $${"%.2f".format(total)}"
+
+        // Mostrar contador de items en el carrito
+        val totalItems = carritoItems.sumOf { it.cantidad }
+        supportActionBar?.title = "Carrito ($totalItems items)"
     }
 }

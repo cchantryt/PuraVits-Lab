@@ -2,6 +2,7 @@ package com.example.puravitslab.controllers
 
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
+import com.example.puravitslab.models.CarritoItem
 import com.example.puravitslab.models.ProductoPersonalizado
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -39,37 +40,49 @@ class PersonalizacionController(private val context: Context) {
         return nombre.trim().ifEmpty { "Mi Bálsamo" }
     }
 
-    fun guardarProductoPersonalizado(
+    fun guardarYAgregarAlCarrito(
         nombre: String,
-        onSuccess: (producto: ProductoPersonalizado) -> Unit,
+        aroma: String,
+        hidratacion: Int,
+        onSuccess: (ProductoPersonalizado) -> Unit,
         onFailure: (String) -> Unit
     ) {
         val userId = auth.currentUser?.uid ?: run {
-            onFailure("Debes iniciar sesión primero")
+            onFailure("Usuario no autenticado")
             return
         }
 
-        val fecha = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
-        val productoId = database.child("users").child(userId).child("productosPersonalizados").push().key
-            ?: run {
-                onFailure("Error generando ID")
-                return
-            }
+        // 1. Guardar en productos_personalizados
+        val productoId = database.child("productos_personalizados").push().key ?: run {
+            onFailure("Error generando ID")
+            return
+        }
 
         val producto = ProductoPersonalizado(
             id = productoId,
-            nombre = obtenerNombreBalsamo(nombre),
+            nombre = nombre,
             color = colorSeleccionado,
+            aroma = aroma,
+            hidratacion = hidratacion,
             usuarioId = userId,
-            precioBase = 5000.0,
-            fechaCreacion = fecha
+            precioBase = calcularPrecio(hidratacion),
+            fechaCreacion = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
         )
 
-        database.child("users").child(userId).child("productosPersonalizados").child(productoId)
-            .setValue(producto)
-            .addOnSuccessListener { onSuccess(producto) }
-            .addOnFailureListener { e ->
-                onFailure(e.message ?: "Error al guardar. Intenta nuevamente")
+        // 2. Guardar producto personalizado
+        database.child("productos_personalizados").child(productoId).setValue(producto)
+            .addOnSuccessListener {
+                // 3. Añadir al carrito usando el nuevo método
+                CarritoController(context).agregarProductoPersonalizado(
+                    producto = producto,
+                    onSuccess = { onSuccess(producto) },
+                    onFailure = { e -> onFailure(e.message ?: "Error al añadir al carrito") }
+                )
             }
+            .addOnFailureListener { e -> onFailure(e.message ?: "Error al guardar el producto") }
+    }
+
+    private fun calcularPrecio(hidratacion: Int): Double {
+        return 5000.0 + (hidratacion * 1000.0) // Precio base + ajuste por hidratación
     }
 }
