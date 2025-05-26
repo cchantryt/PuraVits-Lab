@@ -15,6 +15,10 @@ fun CarritoItem.toProductoPedido(): ProductoPedido {
     return ProductoPedido(
         nombre = this.nombre,
         precio = this.precio,
-        cantidad = this.cantidad
+        cantidad = this.cantidad,
+        esPersonalizado = this.esPersonalizado,
+        colorPersonalizado = this.colorPersonalizado,
+        aroma = this.aroma,
+        hidratacion = this.hidratacion
     )
 }
