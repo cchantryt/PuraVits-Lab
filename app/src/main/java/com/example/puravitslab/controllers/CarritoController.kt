@@ -42,8 +42,10 @@ class CarritoController(private val context: Context) {
             .addOnFailureListener { e -> onFailure(e) }
     }
 
+    // En CarritoController.kt
     fun agregarProductoPersonalizado(
         producto: ProductoPersonalizado,
+        cantidad: Int = 1,
         onSuccess: () -> Unit = {},
         onFailure: (Exception) -> Unit = {}
     ) {
@@ -59,8 +61,7 @@ class CarritoController(private val context: Context) {
             productoId = itemId,
             nombre = producto.nombre,
             precio = producto.precioBase,
-            configId = producto.id, // ID del producto personalizado
-            cantidad = 1,
+            cantidad = cantidad,
             esPersonalizado = true,
             colorPersonalizado = producto.color,
             aroma = producto.aroma,
@@ -72,9 +73,9 @@ class CarritoController(private val context: Context) {
             .addOnFailureListener { e -> onFailure(e) }
     }
 
-    fun actualizarCantidad(
-        itemId: String,
-        nuevaCantidad: Int,
+    fun agregarProducto(
+        producto: Producto,
+        cantidad: Int = 1,
         onSuccess: () -> Unit = {},
         onFailure: (Exception) -> Unit = {}
     ) {
@@ -83,9 +84,20 @@ class CarritoController(private val context: Context) {
             return
         }
 
-        database.child("users").child(userId).child("carrito").child(itemId)
-            .child("cantidad").setValue(nuevaCantidad)
+        val carritoRef = database.child("users").child(userId).child("carrito")
+        val itemId = database.push().key ?: return
+
+        val item = CarritoItem(
+            productoId = itemId,
+            nombre = producto.nombre,
+            precio = producto.precio,
+            cantidad = cantidad,
+            esPersonalizado = false
+        )
+
+        carritoRef.child(itemId).setValue(item)
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { e -> onFailure(e) }
     }
+
 }

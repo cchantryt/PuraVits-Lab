@@ -46,5 +46,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="12dp" />
+
+        <!-- Botón para repetir pedido -->
+        <Button
+            android:id="@+id/btnRepetirPedido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/accion"
+            android:layout_marginTop="16dp"
+            android:text="Repetir este pedido"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:textColor="@color/fondo" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

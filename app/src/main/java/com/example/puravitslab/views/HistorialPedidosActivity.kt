@@ -5,14 +5,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.puravitslab.adapters.HistorialAdapter
+import com.example.puravitslab.controllers.CarritoController
 import com.example.puravitslab.controllers.HistorialPedidosController
 import com.example.puravitslab.databinding.ActivityHistorialPedidosBinding
 import com.example.puravitslab.models.Pedido
+import com.example.puravitslab.models.Producto
+import com.example.puravitslab.models.ProductoPersonalizado
 
 class HistorialPedidosActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHistorialPedidosBinding
-    private lateinit var historialController: HistorialPedidosController // Instancia del controlador
+    private lateinit var historialController: HistorialPedidosController
+    private lateinit var carritoController: CarritoController
     private lateinit var adapter: HistorialAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,24 +24,92 @@ class HistorialPedidosActivity : AppCompatActivity() {
         binding = ActivityHistorialPedidosBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Inicializar el controlador
         historialController = HistorialPedidosController()
+        carritoController = CarritoController(this)
 
         binding.backButton.setOnClickListener { finish() }
 
-        // Llamar al método del controlador para cargar el historial
+        cargarHistorial()
+    }
+
+    private fun cargarHistorial() {
         historialController.cargarHistorial(object : HistorialPedidosController.HistorialPedidosCallback {
             override fun onHistorialCargado(pedidos: List<Pedido>) {
-                // Cuando el historial se carga exitosamente desde el controlador
-                adapter = HistorialAdapter(pedidos)
+                adapter = HistorialAdapter(pedidos) { pedido ->
+                    repetirPedido(pedido)
+                }
                 binding.recyclerHistorial.adapter = adapter
                 binding.recyclerHistorial.layoutManager = LinearLayoutManager(this@HistorialPedidosActivity)
             }
 
             override fun onHistorialError(mensaje: String) {
-                // Cuando ocurre un error al cargar el historial
                 Toast.makeText(this@HistorialPedidosActivity, mensaje, Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun repetirPedido(pedido: Pedido) {
+        var productosAñadidos = 0
+        val totalProductos = pedido.productos.size
+
+        pedido.productos.forEach { producto ->
+            if (producto.esPersonalizado) {
+                val productoPersonalizado = ProductoPersonalizado(
+                    nombre = producto.nombre,
+                    color = producto.colorPersonalizado,
+                    aroma = producto.aroma,
+                    hidratacion = producto.hidratacion,
+                    precioBase = producto.precio
+                )
+
+                carritoController.agregarProductoPersonalizado(
+                    productoPersonalizado,
+                    producto.cantidad,
+                    onSuccess = {
+                        productosAñadidos++
+                        if (productosAñadidos == totalProductos) {
+                            Toast.makeText(
+                                this,
+                                "Todos los productos añadidos al carrito",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    },
+                    onFailure = { e ->
+                        Toast.makeText(
+                            this,
+                            "Error al añadir ${producto.nombre}: ${e.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                )
+            } else {
+                carritoController.agregarProducto(
+                    Producto(
+                        id = "", // Se generará nuevo ID
+                        nombre = producto.nombre,
+                        precio = producto.precio
+                    ),
+                    producto.cantidad,
+                    onSuccess = {
+                        productosAñadidos++
+                        if (productosAñadidos == totalProductos) {
+                            Toast.makeText(
+                                this,
+                                "Todos los productos añadidos al carrito",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    },
+                    onFailure = { e ->
+                        Toast.makeText(
+                            this,
+                            "Error al añadir ${producto.nombre}: ${e.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                )
+            }
+        }
     }
 }

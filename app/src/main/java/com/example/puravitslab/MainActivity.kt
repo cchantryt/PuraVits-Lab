@@ -73,7 +73,6 @@ class MainActivity : Navigation() {
 
     private fun mostrarBeneficios(producto: Producto) {
         Toast.makeText(this, "Mostrando beneficios de ${producto.nombre}", Toast.LENGTH_SHORT).show()
-        // Aquí puedes implementar la lógica para mostrar los beneficios
     }
 
     private fun cargarProductos() {

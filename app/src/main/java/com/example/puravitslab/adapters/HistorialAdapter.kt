@@ -9,36 +9,47 @@ import com.example.puravitslab.databinding.ItemPedidoBinding
 import com.example.puravitslab.databinding.ItemProductoHistorialBinding
 import com.example.puravitslab.models.Pedido
 
-class HistorialAdapter(private val pedidos: List<Pedido>) :
-    RecyclerView.Adapter<HistorialAdapter.PedidoViewHolder>() {
+class HistorialAdapter(
+    private val pedidos: List<Pedido>,
+    private val onRepetirPedidoClick: (Pedido) -> Unit
+) : RecyclerView.Adapter<HistorialAdapter.PedidoViewHolder>() {
 
     inner class PedidoViewHolder(private val binding: ItemPedidoBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
-        private val productosContainer = binding.productosContainer
 
         fun bind(pedido: Pedido) {
             binding.fechaPedido.text = "Fecha: ${pedido.fecha ?: "N/A"}"
             binding.totalPedido.text = "Total: $${"%.2f".format(pedido.total)}"
             binding.estadoPedido.text = "Estado: ${pedido.estado ?: "Pendiente"}"
 
-            // Limpiar contenedor de productos
-            productosContainer.removeAllViews()
+            binding.btnRepetirPedido.setOnClickListener {
+                onRepetirPedidoClick(pedido)
+            }
 
-            // Añadir cada producto al contenedor
+            binding.productosContainer.removeAllViews()
             pedido.productos.forEach { producto ->
                 val productoBinding = ItemProductoHistorialBinding.inflate(
                     LayoutInflater.from(itemView.context),
-                    productosContainer,
+                    binding.productosContainer,
                     false
                 )
 
                 with(productoBinding) {
+                    // Configurar imagen según el color
+                    when {
+                        producto.colorPersonalizado.contains("#FF0000") ->
+                            productImage.setImageResource(R.drawable.balsamo_rojo)
+                        producto.colorPersonalizado.contains("#0000FF") ->
+                            productImage.setImageResource(R.drawable.balsamo_azul)
+                        producto.colorPersonalizado.contains("#00FF00") ->
+                            productImage.setImageResource(R.drawable.balsamo_verde)
+                        else ->
+                            productImage.setImageResource(R.drawable.balsamo_rojo) // Imagen por defecto
+                    }
+
                     productName.text = producto.nombre
                     productPrice.text = "$${"%.2f".format(producto.precio)} x ${producto.cantidad}"
-                    txtCantidad.text = producto.cantidad.toString()
 
-                    // Mostrar emoji del aroma
                     val emojiAroma = when (producto.aroma.toLowerCase()) {
                         "fresa" -> "🍓"
                         "vainilla" -> "🍦"
@@ -50,7 +61,6 @@ class HistorialAdapter(private val pedidos: List<Pedido>) :
                     }
                     aroma.text = emojiAroma
 
-                    // Mostrar detalles de personalización si es personalizado
                     if (producto.esPersonalizado) {
                         productDetails.text = """
                             • Color: ${producto.colorPersonalizado}
@@ -61,21 +71,9 @@ class HistorialAdapter(private val pedidos: List<Pedido>) :
                     } else {
                         productDetails.visibility = View.GONE
                     }
-
-                    // Mostrar imagen según el color (similar al carrito)
-                    when {
-                        producto.colorPersonalizado.contains("#FF0000") ->
-                            productImage.setImageResource(R.drawable.balsamo_rojo)
-                        producto.colorPersonalizado.contains("#0000FF") ->
-                            productImage.setImageResource(R.drawable.balsamo_azul)
-                        producto.colorPersonalizado.contains("#00FF00") ->
-                            productImage.setImageResource(R.drawable.balsamo_verde)
-                        else ->
-                            productImage.setImageResource(R.drawable.balsamo_rojo)
-                    }
                 }
 
-                productosContainer.addView(productoBinding.root)
+                binding.productosContainer.addView(productoBinding.root)
             }
         }
     }

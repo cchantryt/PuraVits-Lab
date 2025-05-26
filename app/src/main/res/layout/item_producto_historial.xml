@@ -17,7 +17,7 @@
         <ImageView
             android:id="@+id/productImage"
             android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_height="100dp"
             android:contentDescription="Imagen del producto"
             android:scaleType="centerCrop" />
 
@@ -34,34 +34,28 @@
 
                 <TextView
                     android:id="@+id/productName"
-                    android:layout_width="0dp"
+                    android:layout_width="162dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="Nombre del producto"
                     android:textColor="@color/texto_principal"
                     android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/aroma"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="30dp"
                     android:text="✨"
-                    android:textSize="20sp" />
+                    android:textAlignment="viewStart"
+                    android:textSize="52sp" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/productPrice"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Precio"
                 android:textColor="@color/texto_secundario"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/txtCantidad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1"
                 android:textSize="14sp" />
 
             <TextView

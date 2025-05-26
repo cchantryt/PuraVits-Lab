@@ -10,13 +10,6 @@ import com.example.puravitslab.MainActivity
 import com.example.puravitslab.controllers.PasarelaPagosController
 import com.example.puravitslab.databinding.ActivityPasarelaPagoBinding
 import com.example.puravitslab.models.CarritoItem
-import com.example.puravitslab.models.Pedido
-import com.example.puravitslab.models.ProductoPedido
-import com.example.puravitslab.models.toProductoPedido
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-import java.text.SimpleDateFormat
-import java.util.*
 
 class PasarelaPagoActivity : AppCompatActivity() {
 
