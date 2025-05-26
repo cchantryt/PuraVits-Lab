@@ -110,7 +110,6 @@ class CarritoActivity : AppCompatActivity() {
                     actualizarTotal()
 
                     if (carritoItems.isEmpty()) {
-                        Toast.makeText(this@CarritoActivity, "No hay productos en el carrito", Toast.LENGTH_SHORT).show()
                     }
                 }
 

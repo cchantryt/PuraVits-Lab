@@ -79,7 +79,7 @@
         android:id="@+id/googleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nuestros Balsamo"
+        android:text="Simulador"
         android:layout_margin="16dp"
         android:backgroundTint="@color/accion"
         android:textColor="@android:color/white"
