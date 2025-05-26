@@ -11,3 +11,10 @@ data class CarritoItem(
     val aroma: String = "", // Valor por defecto
     val hidratacion: Int = 1 // Valor por defecto (1-5), ahora opcional
 )
+fun CarritoItem.toProductoPedido(): ProductoPedido {
+    return ProductoPedido(
+        nombre = this.nombre,
+        precio = this.precio,
+        cantidad = this.cantidad
+    )
+}

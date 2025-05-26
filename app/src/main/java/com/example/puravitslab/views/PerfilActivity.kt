@@ -53,5 +53,10 @@ class PerfilActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        binding.buttonHistorialCompras.setOnClickListener{
+            val intent = Intent(this, HistorialPedidosActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

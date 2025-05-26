@@ -9,6 +9,7 @@ import com.example.puravitslab.adapters.CarritoAdapter
 import com.example.puravitslab.controllers.CarritoController
 import com.example.puravitslab.databinding.ActivityCarritoBinding
 import com.example.puravitslab.models.CarritoItem
+import com.example.puravitslab.models.ProductoPedido
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -74,6 +75,10 @@ class CarritoActivity : AppCompatActivity() {
             if (carritoItems.isNotEmpty()) {
                 val intent = Intent(this, PasarelaPagoActivity::class.java).apply {
                     putExtra("total", calcularTotal())
+                    // Pasar como ArrayList<Parcelable>
+                    putParcelableArrayListExtra("productos", ArrayList(carritoItems.map {
+                        ProductoPedido(it.nombre, it.precio, it.cantidad)
+                    }))
                 }
                 startActivity(intent)
             } else {

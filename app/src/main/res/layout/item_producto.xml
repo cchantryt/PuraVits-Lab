@@ -1,5 +1,6 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:cardView="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -9,57 +10,56 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/fondo_secundario"
         android:orientation="vertical"
-        android:padding="8dp"
-        android:background="@color/fondo_secundario">
+        android:padding="8dp">
 
         <ImageView
             android:id="@+id/productImage"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop" />
+            android:layout_height="180dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/balsamo_rojo" />
 
         <TextView
             android:id="@+id/productName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:paddingTop="8dp"
             android:textColor="@color/texto_principal"
-            android:textStyle="bold"
-            android:paddingTop="8dp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/productPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:paddingTop="4dp"
             android:textColor="@color/texto_principal"
-            android:paddingTop="4dp" />
+            android:textSize="14sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/addToCartButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Agregar al carrito"
                 android:backgroundTint="@color/accion"
-                android:textColor="@color/fondo"
-                />
+                android:text="Agregar al carrito"
+                android:textColor="@color/fondo" />
 
             <Button
                 android:id="@+id/benefitsButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Beneficios"
                 android:layout_marginStart="8dp"
                 android:backgroundTint="@color/accion"
-                android:textColor="@color/fondo"
-                />
+                android:text="Beneficios"
+                android:textColor="@color/fondo" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

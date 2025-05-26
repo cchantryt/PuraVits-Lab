@@ -9,7 +9,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="24dp">
-
+        <ImageButton
+            android:id="@+id/backbutton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Botón atrás"
+            android:src="@drawable/arrow_back"
+            android:tint="@color/accion"
+            android:layout_gravity="start"
+            android:layout_marginBottom="16dp"/>
         <TextView
             android:id="@+id/paymentTitle"
             android:layout_width="match_parent"
@@ -69,7 +78,16 @@
                 android:textColor="@color/texto_principal"
                 android:buttonTint="@color/enfasis" />
         </RadioGroup>
-
+        <TextView
+            android:id="@+id/totalText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total: $0.00"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/texto_principal"
+            android:gravity="end"
+            android:layout_marginTop="16dp"/>
         <Button
             android:id="@+id/finishButton"
             android:layout_width="match_parent"

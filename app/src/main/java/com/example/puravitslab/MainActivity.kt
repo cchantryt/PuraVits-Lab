@@ -41,12 +41,6 @@ class MainActivity : Navigation() {
             startActivity(intent)
         }
 
-        binding.googleButton.setOnClickListener {
-            val url = "https://vt.tiktok.com/ZShTBUnKn/"
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = android.net.Uri.parse(url)
-            startActivity(intent)
-        }
     }
 
     private fun setupRecyclerView() {
