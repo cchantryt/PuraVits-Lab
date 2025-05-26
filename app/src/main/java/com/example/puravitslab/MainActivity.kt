@@ -36,7 +36,7 @@ class MainActivity : Navigation() {
         setupBottomNavigation(binding.bottomNavigationView)
         setupProfileButton()
         binding.googleButton.setOnClickListener {
-            val url = "https://vt.tiktok.com/ZShcKA2c1/"
+            val url = "https://vt.tiktok.com/ZShTBUnKn/ "
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = android.net.Uri.parse(url)
             startActivity(intent)
